@@ -19,7 +19,7 @@ import { useFocusEffect } from '@react-navigation/native';
 var widtht = Dimensions.get('window').width; //full width
 var heightt = Dimensions.get('window').height; //full height
 
-export default function TestScreen4 () {
+export default function Lista () {
 
     const [productosData, setproductosData] = useState([]);
     const [borrarpar, setBorrarpar] = useState('');

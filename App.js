@@ -5,10 +5,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-import TestScreen from './screens/TestScreen';
+import Perfil from './screens/Perfil';
 import TestScreen2 from './screens/TestScreen2';
-import TestScreen3 from './screens/TestScreen3';
-import TestScreen4 from './screens/TestScreen4';
+import Agregar from './screens/Agregar';
+import Lista from './screens/Lista';
 import TestScreen5 from './screens/TestScreen5';
 import ListaCarrito from './components/ListaProductos'
 import { ScrollView } from 'react-native-gesture-handler';
@@ -32,12 +32,12 @@ export default function App() {
           activeTintColor: 'red',
           inactiveTintColor: 'gray',
         }} >
-        <Tab.Screen name="Lista" component={TestScreen4} options={{
+        <Tab.Screen name="Lista" component={Lista} options={{
           tabBarIcon: ({ focused, color, size }) => (
             <MaterialCommunityIcons name={focused ? 'format-list-bulleted-square' : 'format-list-checkbox'} color={color} size={size} />
           ),
           }}/>
-        <Tab.Screen name="Agregar" component={TestScreen3} options={{
+        <Tab.Screen name="Agregar" component={Agregar} options={{
           tabBarIcon: ({ focused, color, size }) => (
             <MaterialCommunityIcons name={focused ? 'pencil-box' : 'pencil-box-outline'} color={color} size={size} />
           ),
@@ -45,6 +45,11 @@ export default function App() {
         <Tab.Screen name="Productos" component={TestScreen5} options={{
           tabBarIcon: ({ focused, color, size }) => (
             <MaterialCommunityIcons name={focused ? 'bank' : 'bank-outline'} color={color} size={size} />
+          ),
+          }}/>
+        <Tab.Screen name="Perfil" component={Perfil} options={{
+          tabBarIcon: ({ focused, color, size }) => (
+            <MaterialCommunityIcons name={focused ? 'account' : 'account-outline'} color={color} size={size} />
           ),
           }}/>
       </Tab.Navigator>

@@ -17,7 +17,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useForm } from 'react-hook-form';
 
 
-export default function TestScreen3() {
+export default function Agregar() {
     
   const margenLeft = useRef(new Animated.Value(0)).current;
 
