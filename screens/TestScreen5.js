@@ -14,13 +14,20 @@ import {
   Button,
   Alert
 } from 'react-native';
+import { CommonActions, useNavigation } from '@react-navigation/native'
+import Perfil from './Perfil';
+import TestScreen2 from './TestScreen2';
+import Agregar from './Agregar';
+import Lista from './Lista';
+
 
 var widtht = Dimensions.get('window').width; //full width
 var heightt = Dimensions.get('window').height; //full height
 
 
-export default function TestScreen4 () {
+export default function TestScreen4 ({navigation}) {
 
+    //const navigation = useNavigation();
     const [querypar, setQuerypar] = useState('');
     const [apipar, setApipar] = useState('https://api.mercadolibre.com/sites/MLA/search?q=');
     const [resultados, setResultados] = useState([]);
@@ -80,17 +87,15 @@ export default function TestScreen4 () {
       })
    };
 
-
-   /*function botonTocado2() {
-    console.log(resultados);
-   }*/
-
     return (
       <View View style={styles.container}>
         <View style={styles.inputcontainer}>
           <TextInput placeholder="Buscar producto" style={styles.inputdato} onChangeText={(val) => setQuerypar(val)} />
           <View style={styles.submit}>
-              <Button onPress={botonTocado} title="Buscar"/>
+              <Button onPress={ () => console.log({querypar}.querypar) } title="ASD"/>
+              <Button onPress={ () => navigation.navigate('Lista', {Lista:({querypar}.querypar)}) } title="Buscar"/>
+              <Button onPress={ () => navigation.navigate('Lista', {Lista:"Test2" }) } title="Porfa"/>
+              <Button onPress={ () => navigation.navigate('Lista', {Lista:"Test3" }) } title="Porfa2"/>
           </View>
         </View>
         <FlatList

@@ -32,6 +32,11 @@ export default function App() {
           activeTintColor: 'red',
           inactiveTintColor: 'gray',
         }} >
+        <Tab.Screen name="Productos" component={TestScreen5} options={{
+          tabBarIcon: ({ focused, color, size }) => (
+            <MaterialCommunityIcons name={focused ? 'bank' : 'bank-outline'} color={color} size={size} />
+          ),
+          }}/>
         <Tab.Screen name="Lista" component={Lista} options={{
           tabBarIcon: ({ focused, color, size }) => (
             <MaterialCommunityIcons name={focused ? 'format-list-bulleted-square' : 'format-list-checkbox'} color={color} size={size} />
@@ -40,11 +45,6 @@ export default function App() {
         <Tab.Screen name="Agregar" component={Agregar} options={{
           tabBarIcon: ({ focused, color, size }) => (
             <MaterialCommunityIcons name={focused ? 'pencil-box' : 'pencil-box-outline'} color={color} size={size} />
-          ),
-          }}/>
-        <Tab.Screen name="Productos" component={TestScreen5} options={{
-          tabBarIcon: ({ focused, color, size }) => (
-            <MaterialCommunityIcons name={focused ? 'bank' : 'bank-outline'} color={color} size={size} />
           ),
           }}/>
         <Tab.Screen name="Perfil" component={Perfil} options={{

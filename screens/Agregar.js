@@ -41,17 +41,37 @@ export default function Agregar() {
 
   const { register, handleSubmit, setValue } = useForm();
   const onSubmit = useCallback(formData => {
-    //console.log(formData);
-    //console.log(formData['email']);
     guardarDatos(formData);
     animate();
   }, []);
 
   guardarDatos = async ( datos ) => {
     try{
-
-      await AsyncStorage.setItem( datos['producto'] , datos['cantidad'] );
-      
+      const response = await AsyncStorage.getItem(datos['lista']);
+      const result = JSON.parse(response);
+      if ( result == null )
+      {
+        await AsyncStorage.setItem( datos['lista'], JSON.stringify([[datos['producto'],datos['cantidad']]]) );
+      }
+      else
+      {
+        const resultSumado = [datos['producto'],datos['cantidad']];
+        result.push(resultSumado);
+        await AsyncStorage.setItem( datos['lista'], JSON.stringify(result) );
+      }
+      const response2 = await AsyncStorage.getItem(datos['lista']);
+      console.log(response2);
+    /*await AsyncStorage.removeItem(datos['lista']);
+      const response = await AsyncStorage.getItem(datos['lista']);
+      const result = JSON.parse(response);*/
+      /*const resultSumado = [datos['producto'],datos['cantidad']];
+      result.push(resultSumado);
+      console.log(result);
+      await AsyncStorage.setItem( datos['lista'], JSON.stringify(result) )*/
+      /*await AsyncStorage.setItem( 'Lista1', JSON.stringify([[datos['producto'],datos['cantidad']]]) );
+      const response = await AsyncStorage.getItem('Lista1');
+      const result = JSON.parse(response);
+      console.log(result);*/
     } catch(error){
 
     }
@@ -65,12 +85,19 @@ export default function Agregar() {
   );
 
   useEffect(() => {
+    register('lista');
     register('producto');
     register('cantidad');
   }, [register]);
 
   return (
     <View style={styles.container}>
+      <TextInput
+        style={styles.input}
+        autoCompleteType="off"
+        placeholder="Lista para agregar producto"
+        onChangeText={onChangeField('lista')}
+      />
       <TextInput
         style={styles.input}
         autoCompleteType="off"
